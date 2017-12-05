@@ -27,5 +27,7 @@ export class FirebaseService {
 getEdificios(){
   return this.db.list<any[]>("/Edificio").valueChanges();
 }
-
+getAulas(letraEdificio:string){//retorno de los key de aulas cada edificio 
+  return this.db.list<any[]>("/Edificio/"+letraEdificio).snapshotChanges();
+}
 }
