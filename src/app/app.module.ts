@@ -10,21 +10,27 @@ import {AngularFireDatabaseModule}  from 'angularfire2/database';
 import {FirebaseService} from './services/firebase.service';
 import { HorariosComponent } from './components/horarios/horarios.component'
 
+// rutas
+import {app_routing} from './app.routes';
+
 //environment
 import {environment}  from '../environments/environment';
+import { HomeComponent } from './components/home/home.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HorariosComponent
+    HorariosComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    app_routing
   //  HttpModule
   ],
   providers: [FirebaseService],

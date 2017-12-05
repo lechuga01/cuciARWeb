@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFireDatabase, AngularFireList}  from 'angularfire2/database';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-horarios',
   templateUrl: './horarios.component.html',
@@ -9,7 +10,7 @@ export class HorariosComponent implements OnInit {
   edificios:AngularFireList<any[]>;
   todoEdificio:any;
   llave:any;
-  constructor(db:AngularFireDatabase) {
+  constructor(db:AngularFireDatabase, private router:Router) {
     //this.edificios = db.list<any[]>("/Edificio/E/0001/L");
     this.edificios = db.list<any[]>("/Edificio/");
     this.edificios.valueChanges().subscribe(edificios => {
@@ -35,6 +36,7 @@ export class HorariosComponent implements OnInit {
 
   obtenersalonesEdificio(letr:string){
     console.log(letr)
+    this.router.navigate(['home',letr]);
   }
 
 }

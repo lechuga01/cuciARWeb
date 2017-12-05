@@ -25,9 +25,7 @@ export class FirebaseService {
   }
 
 getEdificios(){
-  return this.db.list<any[]>("/Edificio").valueChanges().subscribe(edificios => {
-    this.todoEdificio = edificios
-  })
+  return this.db.list<any[]>("/Edificio").valueChanges();
 }
 
 }

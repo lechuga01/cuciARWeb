@@ -1,7 +1,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">Edificio</th>
       <th scope="col">First Name</th>
       <th scope="col">Last Name</th>
       <th scope="col">Username</th>
@@ -9,8 +9,8 @@
   </thead>
   <tbody *ngFor="let item of llave; let edici of todoEdificio "> <!--asi se concatenaria un for -->
 
-    <tr >
-      <button (click)="obtenersalonesEdificio( item.key )" type="button" class="btn btn-secondary">{{item.key}}</button>
+    <tr>
+      <button  (click)="obtenersalonesEdificio( item.key )" type="button" class="btn btn-secondary">{{item.key}}</button>
       <td >edici.value</td>
     </tr>
 
