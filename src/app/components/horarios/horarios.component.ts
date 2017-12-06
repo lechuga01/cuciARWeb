@@ -14,7 +14,10 @@ export class HorariosComponent implements OnInit {
 
   constructor(public db:FirebaseService, private router:Router) {
     //this.edificios = db.list<any[]>("/Edificio/E/0001/L");
-
+    db.getEdificios().subscribe(edificios => {
+    this.todoEdificio = edificios
+    console.log(this.todoEdificio)
+  });
 
   }
 
@@ -23,6 +26,11 @@ export class HorariosComponent implements OnInit {
 
   }
 
+  obtenersalonesEdificio( id:string ){
+    console.log(id)
+    this.router.navigate(['/ed',id]);
+    console.log("salio")
+  }
 
 
 
