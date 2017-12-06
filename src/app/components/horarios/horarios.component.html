@@ -7,11 +7,11 @@
       <th scope="col">Username</th>
     </tr>
   </thead>
-  <tbody *ngFor="let item of llave; let edici of todoEdificio "> <!--asi se concatenaria un for -->
+  <tbody *ngFor="let item of llave;"> <!--asi se concatenaria un for -->
 
     <tr>
       <button  (click)="obtenersalonesEdificio( item.key )" type="button" class="btn btn-secondary">{{item.key}}</button>
-      <td >edici.value</td>
+      <td ></td>
     </tr>
 
   </tbody>

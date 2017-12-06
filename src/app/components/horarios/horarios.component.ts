@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AngularFireDatabase, AngularFireList}  from 'angularfire2/database';
+import {FirebaseService} from '../../services/firebase.service';
 import {Router} from '@angular/router';
 @Component({
   selector: 'app-horarios',
@@ -7,26 +7,15 @@ import {Router} from '@angular/router';
   styleUrls: ['./horarios.component.css']
 })
 export class HorariosComponent implements OnInit {
-  edificios:AngularFireList<any[]>;
+
   todoEdificio:any;
   llave:any;
-  constructor(db:AngularFireDatabase, private router:Router) {
+  Salones:any;
+
+  constructor(public db:FirebaseService, private router:Router) {
     //this.edificios = db.list<any[]>("/Edificio/E/0001/L");
-    this.edificios = db.list<any[]>("/Edificio/");
-    this.edificios.valueChanges().subscribe(edificios => {
-
-      this.todoEdificio = edificios
-
-      console.log(this.todoEdificio);
-    });
-
-    this.edificios.snapshotChanges().subscribe( llavesEdific => {//con el snapchot nos puede devolver el key asi para poder ingresarlos
-
-      this.llave = llavesEdific
 
 
-      console.log(this.llave);
-    });
   }
 
 
@@ -34,9 +23,7 @@ export class HorariosComponent implements OnInit {
 
   }
 
-  obtenersalonesEdificio(letr:string){
-    console.log(letr)
-    this.router.navigate(['home',letr]);
-  }
+
+
 
 }
