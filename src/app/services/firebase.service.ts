@@ -33,4 +33,10 @@ getAulas(letraEdificio:string){//retorno de los key de aulas cada edificio
 getDias(letraEdificio:string,Aula:string){//retorno de los key de aulas cada edificio
   return this.db.list<any[]>("/Edificio/"+letraEdificio+"/"+Aula).snapshotChanges();
 }
+getHoras(letraEdificio:string,Aula:string,dia:string){//retorno de los key de aulas cada edificio
+  return this.db.list<any[]>("/Edificio/"+letraEdificio+"/"+Aula+"/"+dia).snapshotChanges();
+}
+getClases(letraEdificio:string,Aula:string,dia:string,hora:string){//retorno de los key de aulas cada edificio
+  return this.db.list<any[]>("/Edificio/"+letraEdificio+"/"+Aula+"/"+dia+"/"+hora).valueChanges();
+}
 }

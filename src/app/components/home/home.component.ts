@@ -41,12 +41,12 @@ export class HomeComponent implements OnInit {
       console.log(this.edificios)
     });
 
-
+    console.log("entro init home")
 
 
   }
   obtenersalonesEdificio(id:string){
-    console.log(id)
+    console.log(id);
     this.router.navigate(['/ed',id]);
     this.fb.getAulas(this.edificio.id).subscribe(aula => {
       this.aulas = aula

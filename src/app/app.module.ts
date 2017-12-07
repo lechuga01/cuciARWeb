@@ -17,6 +17,8 @@ import {app_routing} from './app.routes';
 import {environment}  from '../environments/environment';
 import { HomeComponent } from './components/home/home.component';
 import { SalonComponent } from './components/salon/salon.component';
+import { HorasComponent } from './components/horas/horas.component';
+import { DiasComponent } from './components/dias/dias.component';
 
 
 
@@ -25,7 +27,9 @@ import { SalonComponent } from './components/salon/salon.component';
     AppComponent,
     HorariosComponent,
     HomeComponent,
-    SalonComponent
+    SalonComponent,
+    HorasComponent,
+    DiasComponent
   ],
   imports: [
     BrowserModule,

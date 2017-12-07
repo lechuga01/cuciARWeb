@@ -20,6 +20,7 @@
         <th scope="col">Clases</th>
       </div>
 
+
     </div>
 
   </tr>
@@ -42,6 +43,25 @@
         <tr *ngFor="let item of dias">
 
             <button  (click)="obtenerHoras( item.key )" type="button" class="btn btn-secondary">{{item.key}}</button>
+        </tr>
+      </div>
+      <div class="col-2">
+        <tr *ngFor="let item of horas">
+
+            <button  (click)="obtenerClases( item.key )" type="button" class="btn btn-secondary">{{item.key}}</button>
+        </tr>
+      </div>
+      <div class="col-2">
+        <tr >
+
+            <button  (click)="obtenerClases( item.key )" type="button" class="btn btn-secondary">
+
+                <h4 [(ngModel)]="hora" ngDefaultControl>Hora: {{hora}}</h4>
+                <h4 [(ngModel)]="clases" ngDefaultControl>Materia: {{clases[0]}}</h4>
+                <h4 [(ngModel)]="clases" ngDefaultControl>Profesor: {{clases[1]}}</h4>
+                <h4 [(ngModel)]="clases" ngDefaultControl>Descripcion: {{clases[2]}}</h4>
+
+              </button>
         </tr>
       </div>
     </div>

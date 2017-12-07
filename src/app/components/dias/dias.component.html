@@ -19,7 +19,6 @@
       <div class="col-2">
         <th scope="col">Clases</th>
       </div>
-
     </div>
 
   </tr>
@@ -42,6 +41,12 @@
         <tr *ngFor="let item of dias">
 
             <button  (click)="obtenerHoras( item.key )" type="button" class="btn btn-secondary">{{item.key}}</button>
+        </tr>
+      </div>
+      <div class="col-2">
+        <tr *ngFor="let item of horas">
+
+            <button  (click)="obtenerClases( item.key )" type="button" class="btn btn-secondary">{{item.key}}</button>
         </tr>
       </div>
     </div>
