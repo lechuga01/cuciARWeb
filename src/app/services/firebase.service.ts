@@ -39,4 +39,10 @@ getHoras(letraEdificio:string,Aula:string,dia:string){//retorno de los key de au
 getClases(letraEdificio:string,Aula:string,dia:string,hora:string){//retorno de los key de aulas cada edificio
   return this.db.list<any[]>("/Edificio/"+letraEdificio+"/"+Aula+"/"+dia+"/"+hora).valueChanges();
 }
+
+getMaterias(){}
+getProfesores(){}
+updateClase(){
+  //this.db.list<any[]>("/Edificio/").set() //lleva la key
+}
 }

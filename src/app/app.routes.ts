@@ -4,13 +4,15 @@ import {HorariosComponent} from './components/horarios/horarios.component';
 import {SalonComponent} from './components/salon/salon.component';
 import {DiasComponent} from './components/dias/dias.component';
 import {HorasComponent} from './components/horas/horas.component';
+import {EditarClaseComponent} from './components/editar-clase/editar-clase.component';
 const app_routes: Routes = [
   { path: 'ed', //component: HorariosComponent},
   children:[
    {path: ':id', component: HomeComponent},
    {path: ':id/:name', component: SalonComponent},
    {path: ':id/:name/:dia', component: DiasComponent},
-   {path: ':id/:name/:dia/:hora', component: HorasComponent}
+   {path: ':id/:name/:dia/:hora', component: HorasComponent},
+   {path: ':id/:name/:dia/:hora/editar', component: EditarClaseComponent}
  ]
  },
  {path:'home', component:HorariosComponent},

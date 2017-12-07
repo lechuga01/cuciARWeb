@@ -19,6 +19,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SalonComponent } from './components/salon/salon.component';
 import { HorasComponent } from './components/horas/horas.component';
 import { DiasComponent } from './components/dias/dias.component';
+import { EditarClaseComponent } from './components/editar-clase/editar-clase.component';
 
 
 
@@ -29,7 +30,8 @@ import { DiasComponent } from './components/dias/dias.component';
     HomeComponent,
     SalonComponent,
     HorasComponent,
-    DiasComponent
+    DiasComponent,
+    EditarClaseComponent
   ],
   imports: [
     BrowserModule,
