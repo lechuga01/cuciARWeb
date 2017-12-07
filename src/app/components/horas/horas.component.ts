@@ -25,7 +25,7 @@ export class HorasComponent implements OnInit {
   // this.edificio=activatedRoute.snapshot.params.id;
   // this.aula = activatedRoute.snapshot.params.name;
   // this.dia = activatedRoute.snapshot.params.dia;
-  
+
   activatedRoute.params.subscribe( parames => {
     this.edificio = parames.id;
     this.aula = parames.name;
@@ -102,5 +102,9 @@ export class HorasComponent implements OnInit {
       console.log("obtubo clases")
       console.log(this.clases)
     })
+  }
+  editarClase(){
+    this.router.navigate(['/ed/'+this.edificio+'/'+this.aula+'/'+this.dia+'/'+this.hora,'editar'])
+
   }
   }

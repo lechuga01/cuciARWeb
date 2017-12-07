@@ -1,13 +1,13 @@
 <form>
   <div class="form-group">
-    <label for="exampleFormControlSelect1">Example select</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
+    <label for="exampleFormControlSelect1">Profesor</label>
+    <select class="form-control" (change)='setProfesorSelector($event)'>
+      <option *ngFor="let profesor of profesores">{{profesor}}</option>
     </select>
   </div>
   <div class="form-group">
     <label for="exampleFormControlSelect1" >MATERIAS</label>
-    <select class="form-control"  (change)='HelloCorp($event)' >
+    <select class="form-control"  (change)='setMateriaSelector($event)' >
       <option *ngFor="let materia of materias" >{{materia.materia}}</option>
     </select>
   </div>
@@ -16,7 +16,7 @@
 <div class="container">
     <div class="row">
       <div class="col">
-      <button type="button" class="btn btn-success">Actualizar</button>
+      <button type="button" class="btn btn-success" (click)='setActualizar()' >Actualizar</button>
       </div>
       <div class="col">
         <button type="button" class="btn btn-secondary">Cancelar</button>

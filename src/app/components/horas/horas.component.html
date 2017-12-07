@@ -51,19 +51,21 @@
             <button  (click)="obtenerClases( item.key )" type="button" class="btn btn-secondary">{{item.key}}</button>
         </tr>
       </div>
-      <div class="col-2">
+      <div class="col-1">
         <tr >
 
             <button  (click)="obtenerClases( item.key )" type="button" class="btn btn-secondary">
-
                 <h4 [(ngModel)]="hora" ngDefaultControl>Hora: {{hora}}</h4>
                 <h4 [(ngModel)]="clases" ngDefaultControl>Materia: {{clases[0]}}</h4>
                 <h4 [(ngModel)]="clases" ngDefaultControl>Profesor: {{clases[1]}}</h4>
                 <h4 [(ngModel)]="clases" ngDefaultControl>Descripcion: {{clases[2]}}</h4>
-
               </button>
+              <button  (click)="editarClase()" type="button"  class="btn btn-secondary">
+                  Editar
+                </button>
         </tr>
       </div>
+
     </div>
 </tbody>
 </table>

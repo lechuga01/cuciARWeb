@@ -45,7 +45,7 @@ getClases(letraEdificio:string,Aula:string,dia:string,hora:string){//retorno de 
 getMaterias(){
   return this.db.list<any[]>("/Materias/INCO").valueChanges();//pura informacion
 }
-getProfesores(){}
+getProfesores(){return this.db.list<any[]>("/Profesores/INCO").valueChanges();}//pura informacion
 updateClase(clasedireccion:string, datos:claseObj[],hora:string){
   this.db.list<any[]>("/test/").update(hora, datos) //lleva la key
 }
