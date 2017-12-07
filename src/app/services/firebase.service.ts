@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase, AngularFireList}  from 'angularfire2/database';
+import {claseObj} from './firebase.service';
 @Injectable()
 export class FirebaseService {
   edificios:AngularFireList<any[]>;
   private todoEdificio:any[];
   llave:any;
+  datostest:any = {profesor:"h",description:'sasdf',materia:'asd'};
   constructor(private db:AngularFireDatabase) {
     //this.edificios = db.list<any[]>("/Edificio/E/0001/L");
     this.edificios = db.list<any[]>("/Edificio/");
     this.edificios.valueChanges().subscribe(edificios => {
 
       this.todoEdificio = edificios
-
-    //  console.log(this.todoEdificio);
+    //    this.db.list<any[]>("/test/").set("hora", this.datostest)
+     console.log(this.datostest);
     });
 
     this.edificios.snapshotChanges().subscribe( llavesEdific => {//con el snapchot nos puede devolver el key asi para poder ingresarlos
@@ -40,9 +42,17 @@ getClases(letraEdificio:string,Aula:string,dia:string,hora:string){//retorno de 
   return this.db.list<any[]>("/Edificio/"+letraEdificio+"/"+Aula+"/"+dia+"/"+hora).valueChanges();
 }
 
-getMaterias(){}
-getProfesores(){}
-updateClase(){
-  //this.db.list<any[]>("/Edificio/").set() //lleva la key
+getMaterias(){
+  return this.db.list<any[]>("/Materias/INCO").valueChanges();//pura informacion
 }
+getProfesores(){}
+updateClase(clasedireccion:string, datos:claseObj[],hora:string){
+  this.db.list<any[]>("/test/").update(hora, datos) //lleva la key
+}
+}
+
+export interface claseObj{
+  profesor:string,
+  description:string,
+  materia:string
 }
