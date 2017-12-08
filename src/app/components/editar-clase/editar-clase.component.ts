@@ -20,6 +20,9 @@ export class EditarClaseComponent implements OnInit {
   profesores:any
   selectProfesor:string ='vacio'
   formulario:any
+  direccionClase:string
+  descripcionMateria:string ='vacio'
+
   constructor(private fb:FirebaseService,activatedRoute:ActivatedRoute,private router:Router) {
   console.log("entro a salon")
   // this.edificio=activatedRoute.snapshot.params.id;
@@ -31,7 +34,7 @@ export class EditarClaseComponent implements OnInit {
     this.aula = parames.name;
     this.dia = parames.dia;
     this.hora = parames.hora
-
+    this.direccionClase = this.edificio+'/'+this.aula+'/'+this.dia
   })
   fb.getMaterias().subscribe(materia => {
     this.materias = materia
@@ -41,8 +44,12 @@ export class EditarClaseComponent implements OnInit {
     this.profesores = profesor
     console.log(this.materias)
   })
-  this.test = {edificio:this.edificio,aula:this.aula}//de esta forma se crea el arreglo a enviar a actualizar
+  //this.test = {edificio:this.edificio,aula:this.aula}//de esta forma se crea el arreglo a enviar a actualizar
+  this.test = {profesor:'olasd'}
+  //this.fb.updateClase('horrr',this.test,'0700')
   console.log(this.test)
+  console.log(this.direccionClase)
+
 
 
 }
@@ -53,14 +60,27 @@ export class EditarClaseComponent implements OnInit {
   }
   setMateriaSelector(event:any){
     this.selectMateria = event.target.value;
+    for (let i = 0; i < this.materias.length; i++) {
+        this.materias[i];
+        if(this.selectMateria === this.materias[i].materia){
+          this.descripcionMateria = this.materias[i].description;
+          console.log(this.descripcionMateria)
+        }
+
+    }
+
     console.log("hola we " )
   }
   setProfesorSelector(event:any){
     this.selectProfesor = event.target.value;
   }
   setActualizar(){
-    this.formulario = {id:this.edificio,aula:this.aula,materia:this.selectMateria,profesor:this.selectProfesor}
+    this.formulario = {materia:this.selectMateria,profesor:this.selectProfesor,description:this.descripcionMateria}
     console.log(this.formulario)
+    this.router.navigate(['/ed/'+this.direccionClase,this.hora])
+    this.fb.updateClase(this.direccionClase,this.formulario,this.hora);
+  }
+  cancelarEdicion(){
     this.router.navigate(['/ed/'+this.edificio+'/'+this.aula+'/'+this.dia+'/'+this.hora])
   }
 }

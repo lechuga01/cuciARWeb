@@ -8,18 +8,18 @@
   <div class="form-group">
     <label for="exampleFormControlSelect1" >MATERIAS</label>
     <select class="form-control"  (change)='setMateriaSelector($event)' >
-      <option *ngFor="let materia of materias" >{{materia.materia}}</option>
+      <option *ngFor="let materia of materias; let index = i">{{materia.materia}}</option>
     </select>
   </div>
 </form>
-<h1>asdfasdfas {{selectMateria}}</h1>
+<h1 >Descripcion clase: {{descripcionMateria}}</h1>
 <div class="container">
     <div class="row">
       <div class="col">
       <button type="button" class="btn btn-success" (click)='setActualizar()' >Actualizar</button>
       </div>
       <div class="col">
-        <button type="button" class="btn btn-secondary">Cancelar</button>
+        <button type="button" (click)='cancelarEdicion()' class="btn btn-secondary">Cancelar</button>
       </div>
     </div>
 </div>

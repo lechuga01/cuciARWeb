@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase, AngularFireList}  from 'angularfire2/database';
-import {claseObj} from './firebase.service';
+
 @Injectable()
 export class FirebaseService {
   edificios:AngularFireList<any[]>;
@@ -46,13 +46,10 @@ getMaterias(){
   return this.db.list<any[]>("/Materias/INCO").valueChanges();//pura informacion
 }
 getProfesores(){return this.db.list<any[]>("/Profesores/INCO").valueChanges();}//pura informacion
-updateClase(clasedireccion:string, datos:claseObj[],hora:string){
-  this.db.list<any[]>("/test/").update(hora, datos) //lleva la key
-}
+
+updateClase(clasedireccion:string, datos:any,hora:string){
+  this.db.list<any[]>("/Edificio/"+clasedireccion).update(hora, datos) //lleva la key
+  console.log(clasedireccion)
 }
 
-export interface claseObj{
-  profesor:string,
-  description:string,
-  materia:string
 }

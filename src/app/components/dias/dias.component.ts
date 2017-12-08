@@ -26,10 +26,10 @@ export class DiasComponent implements OnInit {
   console.log(this.edificio)
   activatedRoute.params.subscribe( parames => {
     //this.edificio = parames.id;
-
+    this.dia = parames.dia
     this.obtenersalonesEdificio(parames.id);
     this.obtenerDias(this.aula)
-    this.obtenerHoras(parames.dia)
+    this.obtenerHoras(this.dia)
     //this.obtenerHoras(parames.dia);
    console.log(parames)
  });
