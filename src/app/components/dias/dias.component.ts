@@ -17,6 +17,8 @@ export class DiasComponent implements OnInit {
   dias:any;
   dia:string;
   horas:any;
+  _email:string
+  Logeado:boolean
 
   constructor(private fb:FirebaseService,activatedRoute:ActivatedRoute,private router:Router) {
   console.log("entro a salon")
@@ -47,6 +49,18 @@ export class DiasComponent implements OnInit {
 }
 
   ngOnInit() {
+    this._email= this.fb.currentUserName
+    if(this.fb.authState == null){//no logeado
+      this.Logeado = false
+      this._email = ''
+      this.router.navigate(['login'])
+    }else {
+      //logeado
+      this.Logeado = true
+      this._email = this.fb.currentUserName
+
+    }
+
     this.fb.getEdificios().subscribe( edif => {
       this.edificios = edif
       console.log(this.edificios)
@@ -88,5 +102,9 @@ export class DiasComponent implements OnInit {
   obtenerClases(hora:string){
     this.router.navigate(['/ed/'+this.edificio+'/'+this.aula+'/'+this.dia,hora])
     //this.fb.getClases(this.edificio,this.aula,this.dia,hora)
+  }
+  logout(){
+    this.fb.signOut();
+    this.router.navigate(['/']);
   }
 }

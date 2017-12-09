@@ -15,6 +15,8 @@ export class SalonComponent implements OnInit {
   aulas:any;
   aula:string;
   dias:any;
+  _email:string
+  Logeado:boolean
   constructor(private fb:FirebaseService,activatedRoute:ActivatedRoute,private router:Router) {
   console.log("entro a salon")
   // this.edificio=activatedRoute.snapshot.params.id;
@@ -46,6 +48,17 @@ console.log("se creoconsole")
 }
 
   ngOnInit() {
+    this._email= this.fb.currentUserName
+    if(this.fb.authState == null){//no logeado
+      this.Logeado = false
+      this._email = ''
+      this.router.navigate(['login'])
+    }else {
+      //logeado
+      this.Logeado = true
+      this._email = this.fb.currentUserName
+
+    }
     this.fb.getEdificios().subscribe(edi => {
       this.edificios = edi
     });
@@ -80,5 +93,10 @@ console.log("se creoconsole")
   obtenerHoras(dia:string){
     this.router.navigate(['/ed/'+this.edificio+'/'+this.aula,dia]);
 
+  }
+  
+  logout(){
+    this.fb.signOut();
+    this.router.navigate(['/']);
   }
 }

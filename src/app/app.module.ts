@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import {AngularFireModule}  from 'angularfire2';
 import {AngularFireDatabaseModule}  from 'angularfire2/database';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 //servicios
 import {FirebaseService} from './services/firebase.service';
 import { HorariosComponent } from './components/horarios/horarios.component'
@@ -20,6 +21,7 @@ import { SalonComponent } from './components/salon/salon.component';
 import { HorasComponent } from './components/horas/horas.component';
 import { DiasComponent } from './components/dias/dias.component';
 import { EditarClaseComponent } from './components/editar-clase/editar-clase.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -31,13 +33,15 @@ import { EditarClaseComponent } from './components/editar-clase/editar-clase.com
     SalonComponent,
     HorasComponent,
     DiasComponent,
-    EditarClaseComponent
+    EditarClaseComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     app_routing
   //  HttpModule
   ],

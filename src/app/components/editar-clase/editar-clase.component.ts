@@ -22,6 +22,8 @@ export class EditarClaseComponent implements OnInit {
   formulario:any
   direccionClase:string
   descripcionMateria:string ='vacio'
+  _email:string
+  Logeado:boolean
 
   constructor(private fb:FirebaseService,activatedRoute:ActivatedRoute,private router:Router) {
   console.log("entro a salon")
@@ -56,7 +58,17 @@ export class EditarClaseComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.selectMateria)
+    this._email= this.fb.currentUserName
+    if(this.fb.authState == null){//no logeado
+      this.Logeado = false
+      this._email = ''
+      this.router.navigate(['login'])
+    }else {
+      //logeado
+      this.Logeado = true
+      this._email = this.fb.currentUserName
 
+    }
   }
   setMateriaSelector(event:any){
     this.selectMateria = event.target.value;
@@ -82,5 +94,10 @@ export class EditarClaseComponent implements OnInit {
   }
   cancelarEdicion(){
     this.router.navigate(['/ed/'+this.edificio+'/'+this.aula+'/'+this.dia+'/'+this.hora])
+  }
+
+  logout(){
+    this.fb.signOut();
+    this.router.navigate(['/']);
   }
 }

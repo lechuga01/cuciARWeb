@@ -1,29 +1,51 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase, AngularFireList}  from 'angularfire2/database';
-
+import {AngularFireAuth} from 'angularfire2/auth';
+import {Router} from '@angular/router';
 @Injectable()
 export class FirebaseService {
+
   edificios:AngularFireList<any[]>;
   private todoEdificio:any[];
   llave:any;
-  datostest:any = {profesor:"h",description:'sasdf',materia:'asd'};
-  constructor(private db:AngularFireDatabase) {
-    //this.edificios = db.list<any[]>("/Edificio/E/0001/L");
+  authState:any = null
+
+  constructor(private afAuth:AngularFireAuth,private db:AngularFireDatabase,private router: Router) {
+    this.afAuth.authState.subscribe( (auth) => {
+      this.authState = auth
+    });
+
     this.edificios = db.list<any[]>("/Edificio/");
     this.edificios.valueChanges().subscribe(edificios => {
+    this.todoEdificio = edificios
 
-      this.todoEdificio = edificios
-    //    this.db.list<any[]>("/test/").set("hora", this.datostest)
-     console.log(this.datostest);
+
     });
 
     this.edificios.snapshotChanges().subscribe( llavesEdific => {//con el snapchot nos puede devolver el key asi para poder ingresarlos
+    this.llave = llavesEdific
 
-      this.llave = llavesEdific
-
-
-      //console.log(this.llave);
     });
+  }
+
+  loginEmail(email: string, password: string) {
+      return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+        .then((user) => {
+          this.authState = user
+        })
+        .catch(error => {
+          console.log(error)
+          throw error
+        });
+    }
+
+  get currentUserName(): string {
+        return this.authState['email']
+      }
+
+  signOut(): void {
+    this.afAuth.auth.signOut();
+    this.router.navigate(['/'])
   }
 
 getEdificios(){

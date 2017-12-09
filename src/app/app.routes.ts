@@ -5,6 +5,8 @@ import {SalonComponent} from './components/salon/salon.component';
 import {DiasComponent} from './components/dias/dias.component';
 import {HorasComponent} from './components/horas/horas.component';
 import {EditarClaseComponent} from './components/editar-clase/editar-clase.component';
+import {LoginComponent} from './components/login/login.component';
+
 const app_routes: Routes = [
   { path: 'ed', //component: HorariosComponent},
   children:[
@@ -16,9 +18,10 @@ const app_routes: Routes = [
  ]
  },
  {path:'home', component:HorariosComponent},
+ {path:'login', component:LoginComponent},
   //falta meterle hijos a su ruta para los demas datos
 
-  { path: '**', pathMatch: 'full', redirectTo: '/home' }
+  { path: '**', pathMatch: 'full', redirectTo: '/login' }
 ];
 
 export const app_routing = RouterModule.forRoot(app_routes);

@@ -11,6 +11,8 @@ export class HorariosComponent implements OnInit {
   todoEdificio:any;
   llave:any;
   Salones:any;
+  _email:string
+  Logeado:boolean
 
   constructor(public db:FirebaseService, private router:Router) {
     //this.edificios = db.list<any[]>("/Edificio/E/0001/L");
@@ -23,13 +25,28 @@ export class HorariosComponent implements OnInit {
 
 
   ngOnInit() {
+    this._email= this.db.currentUserName
+    if(this.db.authState == null){//no logeado
+      this.Logeado = false
+      this._email = ''
+      this.router.navigate(['login'])
+    }else {
+      //logeado
+      this.Logeado = true
+      this._email = this.db.currentUserName
 
+    }
   }
 
   obtenersalonesEdificio( id:string ){
     console.log(id)
     this.router.navigate(['/ed',id]);
     console.log("salio")
+  }
+
+  logout(){
+    this.db.signOut();
+    this.router.navigate(['/']);
   }
 
 

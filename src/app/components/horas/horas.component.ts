@@ -19,6 +19,8 @@ export class HorasComponent implements OnInit {
   hora:string;
   horas:any;
   clases:any [] = [];
+  _email:string
+  Logeado:boolean
 
   constructor(private fb:FirebaseService,activatedRoute:ActivatedRoute,private router:Router) {
   console.log("entro a salon")
@@ -57,6 +59,17 @@ export class HorasComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._email= this.fb.currentUserName
+    if(this.fb.authState == null){//no logeado
+      this.Logeado = false
+      this._email = ''
+      this.router.navigate(['login'])
+    }else {
+      //logeado
+      this.Logeado = true
+      this._email = this.fb.currentUserName
+
+    }
     this.fb.getEdificios().subscribe( edif => {
       this.edificios = edif
       //console.log(this.edificios)
@@ -107,4 +120,10 @@ export class HorasComponent implements OnInit {
     this.router.navigate(['/ed/'+this.edificio+'/'+this.aula+'/'+this.dia+'/'+this.hora,'editar'])
 
   }
+
+  logout(){
+    this.fb.signOut();
+    this.router.navigate(['/']);
+  }
+
   }

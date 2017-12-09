@@ -1,4 +1,13 @@
 <div class="container">
+  <div *ngIf="Logeado" style="text-align:center">
+
+
+    <h1>
+      Welcome to {{_email}}!
+    </h1>
+    <button type="button" (click)='logout()' class="btn btn-primary">Salir</button>
+
+  </div>
 <table class="table">
 
 <thead>

@@ -12,10 +12,11 @@ export class HomeComponent implements OnInit {
   edificio:any;
   aulas:any;
   ruta:any;
-
+  _email:string
+  Logeado:boolean
   constructor(private fb:FirebaseService,  activatedRoute:ActivatedRoute, private router:Router) {
     console.log("entor a home");
-   activatedRoute.params.subscribe( parames => {
+       activatedRoute.params.subscribe( parames => {
      this.edificio = parames;
 
      this.obtenersalonesEdificio(this.edificio.id);
@@ -42,6 +43,17 @@ export class HomeComponent implements OnInit {
     });
 
     console.log("entro init home")
+    this._email= this.fb.currentUserName
+    if(this.fb.authState == null){//no logeado
+      this.Logeado = false
+      this._email = ''
+      this.router.navigate(['login'])
+    }else {
+      //logeado
+      this.Logeado = true
+      this._email = this.fb.currentUserName
+
+    }
 
 
   }
@@ -60,5 +72,9 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/ed/'+this.edificio.id,Salon]);
 
 
+  }
+  logout(){
+    this.fb.signOut();
+    this.router.navigate(['/']);
   }
 }
